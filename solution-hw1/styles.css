@@ -1,0 +1,146 @@
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+main {
+  padding-bottom: 2rem;
+}
+
+a {
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+}
+
+a:hover,
+a.active {
+  background-color: yellow;
+  font-weight: bold;
+}
+
+dl dd {
+  margin-left: 0;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: 1.25rem;
+  margin-top: 3rem;
+  margin-bottom: 1.75rem;
+}
+
+button {
+  background-color: #fff;
+  border: solid 2px black;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: yellow;
+}
+
+hr {
+  border: solid 3px black;
+}
+
+select {
+  border: solid 2px black;
+  padding: 0.5rem 0.15rem;
+  width: 100%;
+}
+
+/* ------ */
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+}
+
+.logo a:hover {
+  background-color: transparent;
+}
+
+.logo img {
+  width: 400px;
+}
+
+.header-right {
+  width: 100%;
+  margin-left: 1rem;
+}
+
+.header-right nav ul {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header-right nav ul li {
+  padding: 1rem 2rem;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-top: 3rem;
+  padding: 0 5rem;
+}
+
+.products dd {
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  max-width: 400px;
+}
+
+.products dd img {
+  box-sizing: border-box;
+  border: solid 3px black;
+  width: 100%;
+}
+
+.product-title {
+  font-weight: bold;
+  margin-top: 0.25rem;
+}
+
+.selection {
+  margin: 1rem 0;
+}
+
+.input {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.input > * {
+  margin-bottom: 0.5rem;
+}
+
+.select-button {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.select-button button {
+  padding: 0.5rem 0;
+  display: block;
+  font-weight: normal;
+}
+
+.select-button button.active {
+  background-color: #c5c5c5;
+}
+
+.product-add {
+  font-weight: bold;
+}
