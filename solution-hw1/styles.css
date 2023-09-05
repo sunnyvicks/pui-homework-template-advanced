@@ -14,8 +14,7 @@ a {
   text-decoration: none;
 }
 
-a:hover,
-a.active {
+a:hover {
   background-color: yellow;
   font-weight: bold;
 }
@@ -128,13 +127,20 @@ select {
   gap: 0.5rem;
 }
 
-.select-button button {
+.select-button label {
+  border: solid 2px black;
   padding: 0.5rem 0;
   display: block;
   font-weight: normal;
+  text-align: center;
+  cursor: pointer;
 }
 
-.select-button button.active {
+.select-button label:hover {
+  background-color: yellow;
+}
+
+.select-button label:has(input:checked) {
   background-color: #c5c5c5;
 }
 
