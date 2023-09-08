@@ -128,6 +128,7 @@ const checkCartItem = (product) => {
   return cartItem ? cartItemIdx : "new_entry";
 };
 
+let timer;
 const addToCart = (index) => {
   const product = productStorage[index];
   // check if cart should update
@@ -156,12 +157,13 @@ const addToCart = (index) => {
     "#cart-summary > div:nth-child(2) span"
   );
   itemsElm.innerText = cartStorage.length;
-  totalElm.innerText = cartStorage.reduce(
-    (total, cartItem) => (total += cartItem.subtotal),
-    0
-  );
+  // toFixed to fix floating point arithmetic from stackoverflow: https://stackoverflow.com/questions/12511057/float-sum-with-javascript
+  totalElm.innerText = cartStorage
+    .reduce((total, cartItem) => (total += cartItem.subtotal), 0)
+    .toFixed(2);
 
   // show popup
+  clearTimeout(timer);
   const popupElm = document.querySelector("#cart-popup");
   const productContentElm = popupElm.querySelector(".cart-product");
   productContentElm.innerHTML = `
@@ -171,7 +173,7 @@ const addToCart = (index) => {
     Price: ${newCartItem.subtotal}
   `;
   popupElm.classList.add("active");
-  setTimeout(() => {
+  timer = setTimeout(() => {
     // hide popup after 3 seconds
     popupElm.classList.remove("active");
   }, 3000);
