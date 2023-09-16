@@ -1,12 +1,12 @@
 import "./style.css";
-const ProdItem = ({ product, id }) => {
+const ProdItem = ({ name, price, id }) => {
   const getProdImg = (name) =>
     `assets/products/${name.toLowerCase().split(" ").join("-")}.jpg`;
 
   return (
     <li data-prod-idx="${idx}">
-      <img width="400" src={getProdImg(product.name)} alt={product.name} />
-      <div className="product-title">{product.name}</div>
+      <img width="400" src={getProdImg(name)} alt={name} />
+      <div className="product-title">{name}</div>
       <div className="selection">
         <div className="input">
           <label for={`glazing_${id}`}>Glazing:</label>
@@ -41,7 +41,7 @@ const ProdItem = ({ product, id }) => {
       </div>
       <div className="input product-add">
         <div className="price">
-          <span>${product.price}</span>
+          <span>${price}</span>
         </div>
         <button>Add to Cart</button>
       </div>

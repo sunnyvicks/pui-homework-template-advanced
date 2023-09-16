@@ -11,7 +11,7 @@ function App() {
       <main class="content">
         <ul class="products">
           {PRODUCTS.map((prod, idx) => (
-            <ProdItem product={prod} id={idx} key={idx} />
+            <ProdItem name={prod.name} price={prod.price} id={idx} key={idx} />
           ))}
         </ul>
       </main>
