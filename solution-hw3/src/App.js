@@ -1,13 +1,20 @@
-import './App.css';
+import "./App.css";
+import { PRODUCTS } from "utils";
+import ProdItem from "components/ProdItem";
+import Navbar from "components/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>
-          Solution to HW1
-        </h1>
-      </header>
+      <Navbar />
+      {/* List of products */}
+      <main class="content">
+        <ul class="products">
+          {PRODUCTS.map((prod, idx) => (
+            <ProdItem product={prod} id={idx} key={idx} />
+          ))}
+        </ul>
+      </main>
     </div>
   );
 }
