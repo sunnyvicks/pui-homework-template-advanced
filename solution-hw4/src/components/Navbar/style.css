@@ -1,0 +1,35 @@
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+}
+
+.logo a:hover {
+  background-color: transparent;
+}
+
+.logo img {
+  width: 400px;
+}
+
+.header-right {
+  width: 100%;
+  margin-left: 1rem;
+  font-size: 1.25rem;
+}
+
+.header-right nav ul {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header-right nav ul li {
+  padding: 1rem 2rem;
+}
+
+.header-right hr {
+  margin-top: 0;
+}
