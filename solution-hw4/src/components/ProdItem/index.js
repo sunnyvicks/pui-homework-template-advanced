@@ -1,41 +1,78 @@
 import "./style.css";
-const ProdItem = ({ name, price, id }) => {
+import { GLAZING_OPTIONS, PACK_SIZES, calcSubtotal } from "utils";
+import { useEffect, useState } from "react";
+
+const ProdItem = ({ product, id, handleAddCart }) => {
+  const [price, setPrice] = useState(product.price);
+  const [glazingOpt, setGlazingOpt] = useState(GLAZING_OPTIONS[0]);
+  const [packSizeOpt, setPackSizeOpt] = useState(null);
+
   const getProdImg = (name) =>
     `assets/products/${name.toLowerCase().split(" ").join("-")}.jpg`;
 
+  useEffect(() => {
+    const newPrice = calcSubtotal({
+      packSize: packSizeOpt?.value || 1,
+      glazing: glazingOpt.value,
+      price: product.price,
+    });
+    setPrice(newPrice);
+  }, [glazingOpt.value, packSizeOpt?.value || 1]);
+
+  const handleGlazingChange = (evt) => {
+    const idx = evt.target.value;
+    const opt = GLAZING_OPTIONS[idx];
+    setGlazingOpt(opt);
+  };
+
+  const handlePackSizeChange = (packSizeOpt) => {
+    setPackSizeOpt(packSizeOpt);
+  };
+
+  const handleKeyPackSizeChange = (evt, packSizeOpt) => {
+    if (evt.code === "Enter") {
+      handlePackSizeChange(packSizeOpt);
+    }
+  };
+
   return (
     <li data-prod-idx="${idx}">
-      <img width="400" src={getProdImg(name)} alt={name} />
-      <div className="product-title">{name}</div>
+      <img width="400" src={getProdImg(product.name)} alt={product.name} />
+      <div className="product-title">{product.product}</div>
       <div className="selection">
         <div className="input">
-          <label for={`glazing_${id}`}>Glazing:</label>
-          <select id={`glazing_${id}`}>
-            <option>Keep original</option>
-            <option>Sugar milk</option>
-            <option>Vanilla milk</option>
-            <option>Double chocolate</option>
+          <label htmlFor={`glazing_${id}`}>Glazing:</label>
+          <select
+            id={`glazing_${id}`}
+            onChange={(evt) => handleGlazingChange(evt)}
+          >
+            {GLAZING_OPTIONS.map((opt, idx) => (
+              <option key={idx} value={idx}>
+                {opt.name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="input">
           <label>Pick size:</label>
           <div className="select-button">
-            <label>
-              1
-              <input type="radio" name="pack_1" value="1" hidden />
-            </label>
-            <label>
-              3
-              <input type="radio" name="pack_1" value="3" hidden />
-            </label>
-            <label>
-              6
-              <input type="radio" name="pack_1" value="6" hidden />
-            </label>
-            <label>
-              12
-              <input type="radio" name="pack_1" value="12" hidden />
-            </label>
+            {PACK_SIZES.map((size, idx) => (
+              <label
+                key={idx}
+                tabIndex={0}
+                onKeyDown={(evt) => handleKeyPackSizeChange(evt, size)}
+              >
+                {size.name}
+                <input
+                  onChange={() => handlePackSizeChange(size)}
+                  checked={!!(size.value === packSizeOpt?.value)}
+                  type="radio"
+                  name={`pack_${id}`}
+                  value={size.value}
+                  hidden
+                />
+              </label>
+            ))}
           </div>
         </div>
       </div>
@@ -43,7 +80,18 @@ const ProdItem = ({ name, price, id }) => {
         <div className="price">
           <span>${price}</span>
         </div>
-        <button>Add to Cart</button>
+        <button
+          onClick={() =>
+            handleAddCart({
+              name: product.name,
+              price,
+              glazing: glazingOpt.name,
+              packSize: packSizeOpt?.name,
+            })
+          }
+        >
+          Add to Cart
+        </button>
       </div>
     </li>
   );
