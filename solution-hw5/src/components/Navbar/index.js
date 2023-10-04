@@ -1,13 +1,11 @@
 import "./style.css";
 
-const Navbar = ({ popup, cart }) => {
-  const calcCartPrice = () =>
-    cart
-      .reduce((acc, item) => {
-        acc += item.price;
-        return acc;
-      }, 0)
-      .toFixed(2);
+const Navbar = ({ popup, toggleCart }) => {
+  const handleKeyCart = (evt) => {
+    if (evt.code === "Enter") {
+      toggleCart();
+    }
+  };
 
   return (
     <header className="header content">
@@ -23,16 +21,13 @@ const Navbar = ({ popup, cart }) => {
               <a href=".">PRODUCTS</a>
             </li>
             <li className="cart">
-              CART
-              {/* Cart summary */}
-              <div id="cart-summary">
-                <div>
-                  <span className="item">{cart.length}</span> item
-                  {cart.length === 1 ? "" : "s"}
-                </div>
-                <div>
-                  Total: $ <span className="total">{calcCartPrice()}</span>
-                </div>
+              <div
+                className="cart-btn"
+                tabIndex={0}
+                onKeyDown={(evt) => handleKeyCart(evt)}
+                onClick={() => toggleCart()}
+              >
+                CART
               </div>
               {/* Cart popup */}
               {!!popup && (

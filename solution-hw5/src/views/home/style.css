@@ -51,39 +51,3 @@ select {
   padding: 0.5rem 0.15rem;
   width: 100%;
 }
-
-/* Cart */
-
-.cart {
-  text-align: right;
-  position: relative;
-  margin-right: 3rem;
-}
-
-.cart div {
-  font-size: 0.75rem;
-}
-
-#cart-summary {
-  position: absolute;
-  top: 2.75rem;
-  right: 2rem;
-}
-
-/* #cart-summary  */
-#cart-popup {
-  text-align: left;
-  border: solid 1px #c5c5c5;
-  background-color: #fff;
-  position: absolute;
-  padding: 0.25rem;
-  width: 150px;
-  left: calc(-75px + 50%);
-  top: 2.75rem;
-}
-
-.cart #cart-popup .cart-product {
-  margin-top: 1rem;
-}
-
-/* Products */

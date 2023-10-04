@@ -28,3 +28,6 @@ export const calcSubtotal = ({ packSize, glazing, price }) => {
   const num = Math.round((price + glazing) * packSize + "e" + 2);
   return Number(num + "e" + -2);
 };
+
+export const getProdImg = (name) =>
+  `assets/products/${name.toLowerCase().split(" ").join("-")}.jpg`;

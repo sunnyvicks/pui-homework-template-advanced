@@ -57,10 +57,10 @@
 .select-button label:hover {
   background-color: yellow;
 }
-
+/* 
 .select-button label:has(input:checked) {
   background-color: #c5c5c5;
-}
+} */
 
 .product-add {
   font-weight: bold;

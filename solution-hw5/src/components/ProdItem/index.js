@@ -1,14 +1,11 @@
 import "./style.css";
-import { GLAZING_OPTIONS, PACK_SIZES, calcSubtotal } from "utils";
+import { GLAZING_OPTIONS, PACK_SIZES, calcSubtotal, getProdImg } from "utils";
 import { useEffect, useState } from "react";
 
 const ProdItem = ({ product, id, handleAddCart }) => {
   const [price, setPrice] = useState(product.price);
   const [glazingOpt, setGlazingOpt] = useState(GLAZING_OPTIONS[0]);
   const [packSizeOpt, setPackSizeOpt] = useState(null);
-
-  const getProdImg = (name) =>
-    `assets/products/${name.toLowerCase().split(" ").join("-")}.jpg`;
 
   useEffect(() => {
     const newPrice = calcSubtotal({
@@ -38,7 +35,7 @@ const ProdItem = ({ product, id, handleAddCart }) => {
   return (
     <li data-prod-idx="${idx}">
       <img width="400" src={getProdImg(product.name)} alt={product.name} />
-      <div className="product-title">{product.product}</div>
+      <div className="product-title">{product.name}</div>
       <div className="selection">
         <div className="input">
           <label htmlFor={`glazing_${id}`}>Glazing:</label>
@@ -61,6 +58,12 @@ const ProdItem = ({ product, id, handleAddCart }) => {
                 key={idx}
                 tabIndex={0}
                 onKeyDown={(evt) => handleKeyPackSizeChange(evt, size)}
+                style={{
+                  backgroundColor:
+                    size.value === packSizeOpt?.value
+                      ? "#c5c5c5"
+                      : "transparent",
+                }}
               >
                 {size.name}
                 <input

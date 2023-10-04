@@ -2,36 +2,31 @@ import "./style.css";
 import { PRODUCTS } from "utils";
 import ProdItem from "components/ProdItem";
 import Navbar from "components/Navbar";
+import Search from "components/Search";
+import Cart from "components/Cart";
 import { useRef, useState } from "react";
 
 function Home() {
   const [cart, setCart] = useState([]);
   const [popup, setPopup] = useState(null);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const [products, setProducts] = useState(PRODUCTS);
+
   const timer = useRef(null);
 
   // checker
-  const checkCartItem = ({ name, packSize, glazing }) => {
+  const checkCartItem = ({ packSize }) => {
     // didn't select packSize
     if (!packSize) {
       return "invalid_entry";
     }
-    const cartItemIdx = cart.findIndex((item) => item.name === name);
-    const cartItem = cart[cartItemIdx];
-    // duplicate entry
-    if (
-      cartItem &&
-      cartItem.name === name &&
-      cartItem.packSize === packSize &&
-      cartItem.glazing === glazing
-    ) {
-      return "invalid_entry";
-    }
-    // new entry or existing cart item
-    return cartItem ? cartItemIdx : "new_entry";
+    // remove checking for duplicates, everything is new entry
+    return "new_entry";
   };
 
   const handleAddCart = (product) => {
-    // // check if cart should update
+    // check if cart should update
     const cartCheck = checkCartItem(product);
     if (cartCheck === "invalid_entry") {
       return;
@@ -39,11 +34,6 @@ function Home() {
     // update or add new entry to cart
     if (cartCheck === "new_entry") {
       setCart((prev) => [...prev, product]);
-    } else {
-      setCart((prev) => {
-        prev[cartCheck] = product;
-        return prev;
-      });
     }
     setPopup(product);
     clearTimeout(timer.current);
@@ -52,20 +42,31 @@ function Home() {
     }, 3000);
   };
 
+  const toggleCart = () => setIsCartOpen((prev) => !prev);
+
   return (
     <div>
-      <Navbar popup={popup} cart={cart} />
+      <Navbar
+        popup={popup}
+        cart={cart}
+        setProducts={setProducts}
+        toggleCart={toggleCart}
+      />
+      <Search setProducts={setProducts} />
+      {isCartOpen && <Cart cart={cart} setCart={setCart} />}
       {/* List of products */}
       <main className="content">
         <ul className="products">
-          {PRODUCTS.map((prod, idx) => (
-            <ProdItem
-              key={idx}
-              product={prod}
-              id={idx}
-              handleAddCart={handleAddCart}
-            />
-          ))}
+          {products.length === 0
+            ? "No Match!"
+            : products.map((prod, idx) => (
+                <ProdItem
+                  key={prod.name}
+                  product={prod}
+                  id={idx}
+                  handleAddCart={handleAddCart}
+                />
+              ))}
         </ul>
       </main>
     </div>
