@@ -46,12 +46,7 @@ function Home() {
 
   return (
     <div>
-      <Navbar
-        popup={popup}
-        cart={cart}
-        setProducts={setProducts}
-        toggleCart={toggleCart}
-      />
+      <Navbar popup={popup} toggleCart={toggleCart} />
       <Search setProducts={setProducts} />
       {isCartOpen && <Cart cart={cart} setCart={setCart} />}
       {/* List of products */}

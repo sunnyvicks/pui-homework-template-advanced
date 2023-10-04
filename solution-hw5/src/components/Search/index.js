@@ -20,9 +20,9 @@ const Search = ({ setProducts }) => {
     setProducts((prev) => {
       switch (newFilter) {
         case "name":
-          return prev.sort((a, b) => a.name.localeCompare(b.name));
+          return [...prev].sort((a, b) => a.name.localeCompare(b.name));
         case "base_price":
-          return prev.sort((a, b) => a.price - b.price);
+          return [...prev].sort((a, b) => a.price - b.price);
         default:
           return prev;
       }
