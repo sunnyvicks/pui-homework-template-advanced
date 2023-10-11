@@ -23,6 +23,8 @@ export const PRODUCTS = [
   { name: "Strawberry cinnamon roll", price: 3.99 },
 ];
 
+export const CART_STORAGE_NAME = "cart_items";
+
 export const calcSubtotal = ({ packSize, glazing, price }) => {
   // rounding from stackoverflow: https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
   const num = Math.round((price + glazing) * packSize + "e" + 2);

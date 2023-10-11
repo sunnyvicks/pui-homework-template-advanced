@@ -2,7 +2,7 @@ import "./style.css";
 import { GLAZING_OPTIONS, PACK_SIZES, calcSubtotal, getProdImg } from "utils";
 import { useEffect, useState } from "react";
 
-const ProdItem = ({ product, id, handleAddCart }) => {
+const ProdItem = ({ product, id, addCart }) => {
   const [price, setPrice] = useState(product.price);
   const [glazingOpt, setGlazingOpt] = useState(GLAZING_OPTIONS[0]);
   const [packSizeOpt, setPackSizeOpt] = useState(null);
@@ -33,7 +33,7 @@ const ProdItem = ({ product, id, handleAddCart }) => {
   };
 
   return (
-    <li data-prod-idx="${idx}">
+    <li>
       <img width="400" src={getProdImg(product.name)} alt={product.name} />
       <div className="product-title">{product.name}</div>
       <div className="selection">
@@ -85,7 +85,7 @@ const ProdItem = ({ product, id, handleAddCart }) => {
         </div>
         <button
           onClick={() =>
-            handleAddCart({
+            addCart({
               name: product.name,
               price,
               glazing: glazingOpt.name,
