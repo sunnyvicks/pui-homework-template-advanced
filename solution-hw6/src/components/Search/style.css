@@ -1,0 +1,18 @@
+.search {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.search input,
+.search select {
+  width: auto;
+}
+
+.search input {
+  border: solid 2px black;
+  padding: 0.5rem 0.15rem;
+}
+
+.search label {
+  margin-right: 0.5rem;
+}

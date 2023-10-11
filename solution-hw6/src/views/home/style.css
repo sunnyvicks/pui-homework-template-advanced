@@ -1,0 +1,53 @@
+/* Global */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+main {
+  padding-bottom: 2rem;
+}
+
+a {
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: yellow;
+  font-weight: bold;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: 1.75rem;
+  margin-top: 3rem;
+  margin-bottom: 1.75rem;
+}
+
+button {
+  background-color: #fff;
+  border: solid 2px black;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: yellow;
+}
+
+hr {
+  border: solid 3px black;
+}
+
+select {
+  border: solid 2px black;
+  padding: 0.5rem 0.15rem;
+  width: 100%;
+}
